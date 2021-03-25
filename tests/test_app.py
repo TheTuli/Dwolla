@@ -1,4 +1,4 @@
-from app import extract_temperature
+from app_logic import extract_temperature
 
 
 def test_extract_temperature_when_valid_body():
