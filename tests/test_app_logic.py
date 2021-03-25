@@ -25,6 +25,5 @@ def test_extract_temperature_with_invalid_body():
 
     try:
         extract_temperature(invalid_body)
-    except AssertionError:
+    except KeyError:
         return True
-
