@@ -1,35 +1,31 @@
 import streamlit as st
-import requests
-from config import ACCESS_KEY
 
-url = 'http://api.openweathermap.org/data/2.5/weather'
+from exceptions import InternetConnectionNotFound
+from app_logic import fetch_temperature
 
-st.title("Rahul's Technical Exercise")
-
-location = st.text_input('Enter your location?')
+st.title("Grabbing the Weather")
+location = st.text_input('Where are you?')
 
 
-def get_temp(location):
-    params, query_url = get_url_and_params(location)
-    response_body = requests.get(url=query_url, params=params)
-    return extract_temperature(response_body.json())
+def display_weather():
+    try:
+        fetch_and_display_results()
+    except KeyError:
+        remind_spellcheck()
+    except InternetConnectionNotFound:
+        st.write("Not Connected to the Internet!")
 
 
-def extract_temperature(response_body):
-    temperature = response_body['main']['temp']
-    return temperature
+def remind_spellcheck():
+    st.write('Could not find the city, check the spelling')
+    st.write('City <State-Code> <Country-Code>')
 
 
-def get_url_and_params(location):
-    query_url = f"{url}?q={location}&appid={ACCESS_KEY}"
-    params = {
-        'units': 'imperial'
-    }
-    return params, query_url
+def fetch_and_display_results():
+    temperature = fetch_temperature(location=location)
+    st.write(location, 'weather:')
+    st.write(temperature, f'degrees Fahrenheit')
 
 
 if location:
-    temp = get_temp(location)
-    st.write(f"{location} weather (Fahrenheit):")
-    st.write(temp)
-
+    display_weather()
