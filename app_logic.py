@@ -16,19 +16,16 @@ def get_query_url(location):
 
 
 def get_dict(response):
-    # assert response
     return response.json()
 
 
 def extract_temperature(response_body):
-    # assert response_body
-    # assert response_body['main']
-    # assert response_body['main']['temp']
-
     temperature = response_body['main']['temp']
     return temperature
 
 
 def fetch_temperature(location):
     response = make_request(location=location)
-    return extract_temperature(get_dict(response))
+    if 'json' in dir(response):
+        response = get_dict(response)
+    return extract_temperature(response)
