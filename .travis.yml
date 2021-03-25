@@ -1,10 +1,12 @@
 language: python
 python:
-  - "3.8"
-virtualenv:
-  system_site_packages: true
+- '3.3'
+- '3.4'
 cache: pip
 install:
-  - pip install -r requirements.txt
+- pip install -r requirements.txt
 script:
-  - python -m streamlit.cli run app.py
+- pytest
+env:
+  global:
+    secure: AEw7BartVUWncKKpLMKk8cIVbaKTtHdxCINPvP2khz2Lpm96OtpYHxz8V3MSOvGPhPccyKrRLJltgaN8B8lgkWZXTc0qnZXWfO9vzxXMIE6s9WHbnVlP/xB1hp2J4Brlg9K3Yp6YKAa6yQ2mRdEEqYKZkUlMs3eSkumX6WmvuBR+mblsTcwuxvibYv9bsW5BcV/SW6jO5ai/eaC++qqgDvZgJ0tyP7EME24IYHxBWwyAy54w0OxJdJHXjpI0BWH1WXc81VCagGnxrh4Toz2foO28Ow2Yy2715m4Vj1uFVv9lEnX0g126iHzMfhIQr/9Pc9rzxyNlR8p4oVwYvcoApnWlAtFPU/4j4wr6PElZIYV2NK1zjCkR7RNL7LHUo3iI/vgn6JgqvSKq/QfDroe+FumLreBYd/0delqJFx4bBtJWPmwsG8c9FhbPpoNqNDdLnqxEweoTl47HuE+KC2EtcTkAgidZ5f+hs55YWgHenxv8B1xs6dDKr4flK/RBjhl8fk8ZK7U0ec+TEseQb8p3SwuaTlPp1Gkjt4zLXy0xxvA1SVwD/DiukQGj8mkbINruLWy9LvfqUPGdNuPAllweO6efKdkXtqe5cmE6LtKI9NcASzmJVQOPo9WXUA844u6eCHCJr1fMKxDtOAGu5O4jtsa7Xz20WRh0Tgtb5sz3XjI=
